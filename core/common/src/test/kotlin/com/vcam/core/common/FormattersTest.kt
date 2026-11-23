@@ -34,10 +34,25 @@ class FormattersTest {
 
     @Test
     fun `frame rate meter counts frames per second window`() {
-        val meter = FrameRateMeter(windowNanos = 0)
-        repeat(30) { meter.onFrame() }
-        assertEquals(30.0, meter.fps(), 0.001)
+        var now = 1_000_000_000L
+        val meter = FrameRateMeter(windowNanos = 1_000_000_000L, clock = { now })
+
+        repeat(30) { meter.onFrame() }   // 30 frames inside the first window
+        now += 1_000_000_000L            // one second later
+        meter.onFrame()                  // closes the window
+
+        assertEquals(31.0, meter.fps(), 0.5)
         meter.reset()
+        assertEquals(0.0, meter.fps(), 0.001)
+    }
+
+    @Test
+    fun `frame rate meter never divides by zero on a coarse clock`() {
+        var now = 5L
+        val meter = FrameRateMeter(windowNanos = 0L, clock = { now })
+
+        repeat(10) { meter.onFrame() }   // elapsed is always 0
+
         assertEquals(0.0, meter.fps(), 0.001)
     }
 }
