@@ -21,6 +21,10 @@ jobs:
   build:
     name: Build, test, package
     runs-on: ubuntu-latest
+    env:
+      # The `secrets` context is not allowed inside a step-level `if:`, so the secret is
+      # mapped to an env var once and the steps test that instead.
+      VCAM_KEYSTORE_B64: ${{ secrets.VCAM_KEYSTORE_BASE64 }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -50,16 +54,17 @@ jobs:
         run: gradle :app:assembleDebug :integration-sample:assembleDebug --stacktrace
 
       - name: Decode signing key (only when secrets are configured)
-        if: ${{ secrets.VCAM_KEYSTORE_BASE64 != '' }}
+        if: env.VCAM_KEYSTORE_B64 != ''
         run: |
-          echo "${{ secrets.VCAM_KEYSTORE_BASE64 }}" | base64 -d > "$RUNNER_TEMP/vcam-release.jks"
+          echo "$VCAM_KEYSTORE_B64" | base64 -d > "$RUNNER_TEMP/vcam-release.jks"
+          {
+            echo "VCAM_KEYSTORE_PATH=$RUNNER_TEMP/vcam-release.jks"
+            echo "VCAM_KEYSTORE_PASSWORD=${{ secrets.VCAM_KEYSTORE_PASSWORD }}"
+            echo "VCAM_KEY_ALIAS=${{ secrets.VCAM_KEY_ALIAS }}"
+            echo "VCAM_KEY_PASSWORD=${{ secrets.VCAM_KEY_PASSWORD }}"
+          } >> "$GITHUB_ENV"
 
       - name: Assemble release APK
-        env:
-          VCAM_KEYSTORE_PATH: ${{ secrets.VCAM_KEYSTORE_BASE64 != '' && format('{0}/vcam-release.jks', runner.temp) || '' }}
-          VCAM_KEYSTORE_PASSWORD: ${{ secrets.VCAM_KEYSTORE_PASSWORD }}
-          VCAM_KEY_ALIAS: ${{ secrets.VCAM_KEY_ALIAS }}
-          VCAM_KEY_PASSWORD: ${{ secrets.VCAM_KEY_PASSWORD }}
         run: gradle :app:assembleRelease --stacktrace
 
       - name: Collect APKs and checksums
@@ -159,6 +164,10 @@ jobs:
   pages:
     name: Deploy website to GitHub Pages
     needs: build
+    # Pages must be enabled first (Settings -> Pages -> Source: GitHub Actions). Until then
+    # this job is allowed to fail without turning the whole run red, because the APKs are
+    # what matters here.
+    continue-on-error: true
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     runs-on: ubuntu-latest
     environment:
