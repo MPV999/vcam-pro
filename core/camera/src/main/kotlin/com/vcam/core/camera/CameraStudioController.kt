@@ -150,27 +150,34 @@ class CameraStudioController(private val context: Context) {
         }
     }
 
-    suspend fun takePhoto(target: File): Result<File> = suspendCancellableCoroutine { continuation ->
-        val capture = imageCapture
-        if (capture == null) {
-            continuation.resumeWithException(IllegalStateException("Camera is not bound"))
-            return@suspendCancellableCoroutine
-        }
-        val options = ImageCapture.OutputFileOptions.Builder(target).build()
-        capture.takePicture(
-            options,
-            ContextCompat.getMainExecutor(context),
-            object : ImageCapture.OnImageSavedCallback {
-                override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
-                    if (continuation.isActive) continuation.resume(target)
-                }
-
-                override fun onError(exception: ImageCaptureException) {
-                    if (continuation.isActive) continuation.resumeWithException(exception)
-                }
-            },
-        )
+    suspend fun takePhoto(target: File): Result<File> = try {
+        Result.success(takePhotoOrThrow(target))
+    } catch (throwable: Throwable) {
+        Result.failure(throwable)
     }
+
+    private suspend fun takePhotoOrThrow(target: File): File =
+        suspendCancellableCoroutine { continuation ->
+            val capture = imageCapture
+            if (capture == null) {
+                continuation.resumeWithException(IllegalStateException("Camera is not bound"))
+                return@suspendCancellableCoroutine
+            }
+            val options = ImageCapture.OutputFileOptions.Builder(target).build()
+            capture.takePicture(
+                options,
+                ContextCompat.getMainExecutor(context),
+                object : ImageCapture.OnImageSavedCallback {
+                    override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
+                        if (continuation.isActive) continuation.resume(target)
+                    }
+
+                    override fun onError(exception: ImageCaptureException) {
+                        if (continuation.isActive) continuation.resumeWithException(exception)
+                    }
+                },
+            )
+        }
 
     fun startRecording(target: File, withAudio: Boolean): Result<Unit> {
         if (isRecording) return Result.failure(IllegalStateException("Already recording"))
