@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings_title">Settings</string>
+    <string name="settings_appearance">Appearance</string>
+    <string name="settings_theme_system">System</string>
+    <string name="settings_theme_light">Light</string>
+    <string name="settings_theme_dark">Dark</string>
+    <string name="settings_language">Language</string>
+    <string name="settings_language_system">System</string>
+    <string name="settings_language_note">The app restarts to apply the new language.</string>
+    <string name="settings_capture">Capture</string>
+    <string name="settings_keep_screen_on">Keep the screen on in Camera Studio</string>
+    <string name="settings_show_grid">Show framing grid</string>
+    <string name="settings_mirror_preview">Mirror the front camera preview</string>
+    <string name="settings_pipeline">Virtual camera pipeline</string>
+    <string name="settings_default_fps">Default output FPS</string>
+    <string name="settings_privacy">Privacy</string>
+    <string name="settings_privacy_body">Everything stays on this device. No account, no server, no upload. Media is stored in the app sandbox and only leaves it when you export a file yourself.</string>
+</resources>

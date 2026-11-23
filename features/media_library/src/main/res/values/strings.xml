@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="library_title">Media library</string>
+    <string name="library_import">Import media</string>
+    <string name="library_search">Search by name</string>
+    <string name="library_filter_all">All</string>
+    <string name="library_filter_photos">Photos</string>
+    <string name="library_filter_videos">Videos</string>
+    <string name="library_filter_favorites">Favorites</string>
+    <string name="library_empty">No media yet. Capture something or import a file.</string>
+    <string name="library_rename">Rename</string>
+    <string name="library_save">Save</string>
+    <string name="library_cancel">Cancel</string>
+    <string name="library_favorite">Favorite</string>
+    <string name="library_export">Export</string>
+    <string name="library_delete">Delete</string>
+    <string name="library_use_as_source">Use as virtual camera source</string>
+    <string name="library_detail_type">Type</string>
+    <string name="library_detail_resolution">Resolution</string>
+    <string name="library_detail_duration">Duration</string>
+    <string name="library_detail_size">Size</string>
+    <string name="library_detail_mime">MIME</string>
+    <string name="library_detail_origin">Origin</string>
+    <string name="library_detail_path">Path</string>
+</resources>

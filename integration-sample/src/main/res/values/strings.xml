@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="sample_app_name">VCAM Integration Sample</string>
+    <string name="sample_title">Virtual camera integration</string>
+    <string name="sample_subtitle">Frames below come from the VCAM SDK, not from the device camera.</string>
+    <string name="sample_camera_back">Back camera</string>
+    <string name="sample_camera_front">Front camera</string>
+    <string name="sample_pick_video">Pick video</string>
+    <string name="sample_pick_image">Pick image</string>
+    <string name="sample_capture">Save frame</string>
+    <string name="sample_close">Close session</string>
+    <string name="sample_reopen">Reopen session</string>
+    <string name="sample_status">Status</string>
+    <string name="sample_fps">FPS</string>
+    <string name="sample_resolution">Resolution</string>
+    <string name="sample_frames">Frames</string>
+    <string name="sample_source">Source</string>
+    <string name="sample_log">Event log</string>
+    <string name="sample_no_frames">Waiting for frames…</string>
+</resources>

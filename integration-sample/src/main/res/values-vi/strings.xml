@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="sample_app_name">VCAM Integration Sample</string>
+    <string name="sample_title">Tích hợp virtual camera</string>
+    <string name="sample_subtitle">Khung hình bên dưới đến từ SDK VCAM, không phải camera của máy.</string>
+    <string name="sample_camera_back">Camera sau</string>
+    <string name="sample_camera_front">Camera trước</string>
+    <string name="sample_pick_video">Chọn video</string>
+    <string name="sample_pick_image">Chọn ảnh</string>
+    <string name="sample_capture">Lưu khung hình</string>
+    <string name="sample_close">Đóng phiên</string>
+    <string name="sample_reopen">Mở lại phiên</string>
+    <string name="sample_status">Trạng thái</string>
+    <string name="sample_fps">FPS</string>
+    <string name="sample_resolution">Độ phân giải</string>
+    <string name="sample_frames">Số khung</string>
+    <string name="sample_source">Nguồn</string>
+    <string name="sample_log">Nhật ký sự kiện</string>
+    <string name="sample_no_frames">Đang chờ khung hình…</string>
+</resources>

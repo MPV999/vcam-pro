@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="virtual_title">Virtual Camera Studio</string>
+    <string name="virtual_subtitle">Frames are produced by the VCAM SDK on this device.</string>
+    <string name="virtual_preview">Virtual camera preview</string>
+    <string name="virtual_no_source">No source attached</string>
+    <string name="virtual_state">State</string>
+    <string name="virtual_fps">Measured FPS</string>
+    <string name="virtual_resolution">Output resolution</string>
+    <string name="virtual_source_size">Source size</string>
+    <string name="virtual_frames">Frames delivered</string>
+    <string name="virtual_pick_media">Pick media</string>
+    <string name="virtual_use_camera">Use camera</string>
+    <string name="virtual_stop">Stop session</string>
+    <string name="virtual_play_pause">Play or pause</string>
+    <string name="virtual_loop">Loop</string>
+    <string name="virtual_scale_mode">Scale mode</string>
+    <string name="virtual_output_size">Output size</string>
+    <string name="virtual_output_fps">Output FPS</string>
+    <string name="virtual_log">Pipeline log</string>
+    <string name="virtual_source_preview">Source preview (Media3)</string>
+</resources>

@@ -1,0 +1,2 @@
+-keep class com.vcam.sdk.frames.** { *; }
+-keep interface com.vcam.sdk.frames.** { *; }

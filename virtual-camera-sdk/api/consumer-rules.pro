@@ -1,0 +1,2 @@
+-keep class com.vcam.sdk.api.** { *; }
+-keep interface com.vcam.sdk.api.** { *; }

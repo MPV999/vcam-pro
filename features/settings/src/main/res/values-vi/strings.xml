@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings_title">Cài đặt</string>
+    <string name="settings_appearance">Giao diện</string>
+    <string name="settings_theme_system">Hệ thống</string>
+    <string name="settings_theme_light">Sáng</string>
+    <string name="settings_theme_dark">Tối</string>
+    <string name="settings_language">Ngôn ngữ</string>
+    <string name="settings_language_system">Hệ thống</string>
+    <string name="settings_language_note">Ứng dụng sẽ khởi động lại để áp dụng ngôn ngữ mới.</string>
+    <string name="settings_capture">Chụp và quay</string>
+    <string name="settings_keep_screen_on">Giữ màn hình sáng trong Camera Studio</string>
+    <string name="settings_show_grid">Hiện lưới căn khung</string>
+    <string name="settings_mirror_preview">Lật ngược preview camera trước</string>
+    <string name="settings_pipeline">Pipeline virtual camera</string>
+    <string name="settings_default_fps">FPS đầu ra mặc định</string>
+    <string name="settings_privacy">Quyền riêng tư</string>
+    <string name="settings_privacy_body">Mọi thứ nằm trên thiết bị này. Không tài khoản, không máy chủ, không tải lên. Media được lưu trong vùng riêng của ứng dụng và chỉ rời khỏi đó khi bạn tự xuất tệp.</string>
+</resources>

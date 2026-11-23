@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">VCAM Pro</string>
+    <string name="nav_dashboard">Tổng quan</string>
+    <string name="nav_camera">Camera</string>
+    <string name="nav_library">Thư viện</string>
+    <string name="nav_virtual">Virtual</string>
+    <string name="nav_device">Thiết bị</string>
+    <string name="nav_settings">Cài đặt</string>
+</resources>

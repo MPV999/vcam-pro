@@ -1,0 +1,91 @@
+package com.vcam.sdk.format
+
+/**
+ * Pixel layout of a frame delivered by the SDK.
+ *
+ * - [RGBA_8888] is the native output of the GL read-back path; cheapest to produce.
+ * - [YUV_420_888] is planar I420 (Y, then U, then V), which is what CameraX / MediaCodec
+ *   consumers usually expect. Produced by converting the RGBA buffer on the CPU.
+ * - [NV21] is semi-planar Y + interleaved VU, the layout required by many legacy
+ *   `Camera2` / `ImageReader` pipelines.
+ */
+enum class FrameFormat {
+    RGBA_8888,
+    YUV_420_888,
+    NV21;
+
+    val bytesPerPixel: Int
+        get() = when (this) {
+            RGBA_8888 -> 4
+            YUV_420_888, NV21 -> 2 // 1.5 rounded up; use bytesFor() for exact sizes
+        }
+
+    /** Exact buffer size for a frame of the given size. */
+    fun bytesFor(width: Int, height: Int): Int = when (this) {
+        RGBA_8888 -> width * height * 4
+        YUV_420_888, NV21 -> width * height * 3 / 2
+    }
+}
+
+/** How the source rectangle is mapped onto the output frame. */
+enum class ScaleMode {
+    /** Whole source visible, letterboxed with black bars. */
+    FIT,
+
+    /** Output fully covered, overflow cropped evenly. */
+    CROP,
+
+    /** Stretched to the output size, aspect ratio not preserved. */
+    FILL,
+}
+
+/**
+ * Immutable description of the frames a source must deliver.
+ *
+ * The SDK never silently changes these values: if the device cannot honour them the
+ * source reports [com.vcam.sdk.api.SourceError.UnsupportedConfiguration] instead.
+ */
+data class FrameConfiguration(
+    val width: Int = 1280,
+    val height: Int = 720,
+    val fps: Int = 30,
+    val format: FrameFormat = FrameFormat.RGBA_8888,
+    val scaleMode: ScaleMode = ScaleMode.CROP,
+) {
+    init {
+        require(width > 0) { "width must be > 0" }
+        require(height > 0) { "height must be > 0" }
+        require(fps in 1..120) { "fps must be in 1..120" }
+        require(width % 2 == 0 && height % 2 == 0) { "width and height must be even for YUV output" }
+    }
+
+    val aspectRatio: Float get() = width.toFloat() / height.toFloat()
+
+    val frameSizeBytes: Int get() = format.bytesFor(width, height)
+
+    /** Nominal frame interval in nanoseconds. */
+    val frameIntervalNanos: Long get() = 1_000_000_000L / fps
+
+    /** Nominal frame interval in microseconds, for MediaCodec pacing. */
+    val frameIntervalUs: Long get() = 1_000_000L / fps
+
+    fun copy(
+        width: Int = this.width,
+        height: Int = this.height,
+        fps: Int = this.fps,
+        format: FrameFormat = this.format,
+        scaleMode: ScaleMode = this.scaleMode,
+    ): FrameConfiguration = FrameConfiguration(width, height, fps, format, scaleMode)
+
+    companion object {
+        /** 16:9 presets. */
+        val P720 = FrameConfiguration(1280, 720, 30)
+        val P1080 = FrameConfiguration(1920, 1080, 30)
+        val P480 = FrameConfiguration(640, 480, 30)
+        val SQUARE = FrameConfiguration(720, 720, 30)
+
+        val COMMON_FPS = listOf(15, 24, 25, 30, 60)
+
+        val PRESETS: List<FrameConfiguration> = listOf(P480, P720, P1080, SQUARE)
+    }
+}

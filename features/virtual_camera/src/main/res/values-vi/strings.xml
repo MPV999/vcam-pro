@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="virtual_title">Virtual Camera Studio</string>
+    <string name="virtual_subtitle">Khung hình do SDK VCAM tạo ra ngay trên thiết bị.</string>
+    <string name="virtual_preview">Xem trước virtual camera</string>
+    <string name="virtual_no_source">Chưa gắn nguồn</string>
+    <string name="virtual_state">Trạng thái</string>
+    <string name="virtual_fps">FPS thực tế</string>
+    <string name="virtual_resolution">Độ phân giải đầu ra</string>
+    <string name="virtual_source_size">Kích thước nguồn</string>
+    <string name="virtual_frames">Số khung đã phát</string>
+    <string name="virtual_pick_media">Chọn media</string>
+    <string name="virtual_use_camera">Dùng camera</string>
+    <string name="virtual_stop">Dừng phiên</string>
+    <string name="virtual_play_pause">Phát hoặc tạm dừng</string>
+    <string name="virtual_loop">Lặp</string>
+    <string name="virtual_scale_mode">Chế độ hiển thị</string>
+    <string name="virtual_output_size">Kích thước đầu ra</string>
+    <string name="virtual_output_fps">FPS đầu ra</string>
+    <string name="virtual_log">Nhật ký pipeline</string>
+    <string name="virtual_source_preview">Xem trước nguồn (Media3)</string>
+</resources>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="dashboard_headline">Bảng điều khiển</string>
+    <string name="dashboard_subtitle">Ghi cục bộ, thư viện cục bộ, virtual camera cục bộ.</string>
+    <string name="dashboard_photos">Ảnh</string>
+    <string name="dashboard_videos">Video</string>
+    <string name="dashboard_library_size">Dung lượng thư viện</string>
+    <string name="dashboard_disk_usage">Dung lượng trên máy</string>
+    <string name="dashboard_device">Thiết bị</string>
+    <string name="dashboard_device_model">Model</string>
+    <string name="dashboard_device_android">Android</string>
+    <string name="dashboard_device_cameras">Số camera</string>
+    <string name="dashboard_device_flash">Đèn flash</string>
+    <string name="dashboard_recent">Media gần đây</string>
+    <string name="dashboard_empty">Chưa có nội dung nào.</string>
+    <string name="dashboard_sessions">Phiên kiểm thử gần đây</string>
+    <string name="dashboard_no_sessions">Chưa chạy phiên virtual camera nào.</string>
+    <string name="dashboard_actions">Thao tác nhanh</string>
+    <string name="action_open_camera">Mở Camera Studio</string>
+    <string name="action_open_library">Mở Thư viện media</string>
+    <string name="action_open_virtual_camera">Mở Virtual Camera Studio</string>
+    <string name="action_open_device_center">Mở Trung tâm thiết bị</string>
+    <string name="common_yes">Có</string>
+    <string name="common_no">Không</string>
+</resources>

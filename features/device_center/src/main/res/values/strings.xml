@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="device_title">Device center</string>
+    <string name="device_hardware">Hardware</string>
+    <string name="device_model">Model</string>
+    <string name="device_android">Android</string>
+    <string name="device_abi">ABIs</string>
+    <string name="device_memory">Memory class</string>
+    <string name="device_screen">Screen</string>
+    <string name="device_cameras">Cameras</string>
+    <string name="device_no_cameras">No camera reported by the platform.</string>
+    <string name="device_decoders">Video decoders</string>
+    <string name="device_encoders">Video encoders</string>
+    <string name="device_none">None</string>
+</resources>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="dashboard_headline">Control deck</string>
+    <string name="dashboard_subtitle">Local capture, local library, local virtual camera.</string>
+    <string name="dashboard_photos">Photos</string>
+    <string name="dashboard_videos">Videos</string>
+    <string name="dashboard_library_size">Library size</string>
+    <string name="dashboard_disk_usage">Disk usage</string>
+    <string name="dashboard_device">Device</string>
+    <string name="dashboard_device_model">Model</string>
+    <string name="dashboard_device_android">Android</string>
+    <string name="dashboard_device_cameras">Cameras</string>
+    <string name="dashboard_device_flash">Flash</string>
+    <string name="dashboard_recent">Recent media</string>
+    <string name="dashboard_empty">Nothing captured yet.</string>
+    <string name="dashboard_sessions">Recent test sessions</string>
+    <string name="dashboard_no_sessions">No virtual camera session has run yet.</string>
+    <string name="dashboard_actions">Quick actions</string>
+    <string name="action_open_camera">Open Camera Studio</string>
+    <string name="action_open_library">Open Media Library</string>
+    <string name="action_open_virtual_camera">Open Virtual Camera Studio</string>
+    <string name="action_open_device_center">Open Device Center</string>
+    <string name="common_yes">Yes</string>
+    <string name="common_no">No</string>
+</resources>

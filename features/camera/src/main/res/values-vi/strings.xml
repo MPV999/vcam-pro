@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="camera_permission_required">Cần quyền camera để chụp ảnh.</string>
+    <string name="camera_recording">Đang quay</string>
+    <string name="camera_flash">Đèn flash</string>
+    <string name="camera_grid">Lưới</string>
+    <string name="camera_switch">Đổi camera</string>
+    <string name="camera_zoom">Thu phóng</string>
+    <string name="camera_timer_off">Tắt</string>
+    <string name="camera_capture">Chụp ảnh</string>
+    <string name="camera_record">Quay video</string>
+</resources>

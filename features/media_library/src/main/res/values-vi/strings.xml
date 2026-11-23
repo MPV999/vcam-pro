@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="library_title">Thư viện media</string>
+    <string name="library_import">Nhập media</string>
+    <string name="library_search">Tìm theo tên</string>
+    <string name="library_filter_all">Tất cả</string>
+    <string name="library_filter_photos">Ảnh</string>
+    <string name="library_filter_videos">Video</string>
+    <string name="library_filter_favorites">Yêu thích</string>
+    <string name="library_empty">Chưa có media. Hãy quay hoặc nhập tệp.</string>
+    <string name="library_rename">Đổi tên</string>
+    <string name="library_save">Lưu</string>
+    <string name="library_cancel">Huỷ</string>
+    <string name="library_favorite">Yêu thích</string>
+    <string name="library_export">Xuất</string>
+    <string name="library_delete">Xoá</string>
+    <string name="library_use_as_source">Dùng làm nguồn virtual camera</string>
+    <string name="library_detail_type">Loại</string>
+    <string name="library_detail_resolution">Độ phân giải</string>
+    <string name="library_detail_duration">Thời lượng</string>
+    <string name="library_detail_size">Dung lượng</string>
+    <string name="library_detail_mime">MIME</string>
+    <string name="library_detail_origin">Nguồn</string>
+    <string name="library_detail_path">Đường dẫn</string>
+</resources>

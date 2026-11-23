@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="device_title">Trung tâm thiết bị</string>
+    <string name="device_hardware">Phần cứng</string>
+    <string name="device_model">Model</string>
+    <string name="device_android">Android</string>
+    <string name="device_abi">ABI</string>
+    <string name="device_memory">Bộ nhớ cấp cho app</string>
+    <string name="device_screen">Màn hình</string>
+    <string name="device_cameras">Camera</string>
+    <string name="device_no_cameras">Nền tảng không báo camera nào.</string>
+    <string name="device_decoders">Bộ giải mã video</string>
+    <string name="device_encoders">Bộ mã hoá video</string>
+    <string name="device_none">Không có</string>
+</resources>

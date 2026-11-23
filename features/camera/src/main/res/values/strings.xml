@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="camera_permission_required">Camera permission is required to capture.</string>
+    <string name="camera_recording">Recording</string>
+    <string name="camera_flash">Flash</string>
+    <string name="camera_grid">Grid</string>
+    <string name="camera_switch">Switch camera</string>
+    <string name="camera_zoom">Zoom</string>
+    <string name="camera_timer_off">Off</string>
+    <string name="camera_capture">Capture photo</string>
+    <string name="camera_record">Record video</string>
+</resources>

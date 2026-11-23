@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>VCAM PRO ULTIMATE VIP 2026</title>
+    <meta name="description" content="On-device virtual camera SDK and studio for Android. Capture, import, and feed real frames to apps that integrate the SDK." />
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<header class="nav">
+    <a class="brand" href="#top">
+        <span class="dot"></span> VCAM PRO <span class="tag">2026</span>
+    </a>
+    <nav>
+        <a href="#features">Features</a>
+        <a href="#download">Download</a>
+        <a href="#requirements">Requirements</a>
+        <a href="#changelog">Changelog</a>
+        <a href="sdk.html">SDK</a>
+        <a href="privacy.html">Privacy</a>
+    </nav>
+</header>
+
+<main id="top">
+    <section class="hero">
+        <p class="eyebrow">On-device · Offline · No account</p>
+        <h1>Your own virtual camera,<br />running entirely on your phone.</h1>
+        <p class="lead">
+            VCAM PRO records with the real camera, keeps a private media library, and exposes the
+            frames you pick through an Android SDK that any app you control can integrate.
+            No root, no hooking, no server.
+        </p>
+        <div class="cta">
+            <a id="download-btn" class="btn primary disabled" href="#download" aria-disabled="true">
+                Loading release…
+            </a>
+            <a class="btn ghost" href="https://github.com/OWNER/REPO/releases" id="releases-link">All releases</a>
+        </div>
+        <p class="meta" id="release-meta">Checking the latest GitHub release…</p>
+    </section>
+
+    <section id="features" class="grid">
+        <article class="card">
+            <h3>Real capture</h3>
+            <p>CameraX photo and video capture with zoom, torch, exposure compensation, timer and grid — whatever the device actually supports.</p>
+        </article>
+        <article class="card">
+            <h3>Private library</h3>
+            <p>Room-backed library in app-scoped storage. Import with the Storage Access Framework, export through MediaStore. Nothing is scanned behind your back.</p>
+        </article>
+        <article class="card">
+            <h3>Streaming decode</h3>
+            <p>MediaExtractor → MediaCodec → GL. A 4 GB video never lands in RAM; only a bounded set of frames exists at any moment.</p>
+        </article>
+        <article class="card">
+            <h3>Virtual camera SDK</h3>
+            <p>CameraSource, FrameConsumer, PlaybackController and CameraSession. YUV_420_888, NV21 or RGBA output with a hard memory ceiling.</p>
+        </article>
+        <article class="card">
+            <h3>Honest limits</h3>
+            <p>Android gives no public API for replacing the system camera for other apps. Frames only reach apps that integrate the SDK. No root, no Magisk, no Xposed.</p>
+        </article>
+        <article class="card">
+            <h3>Zero infrastructure</h3>
+            <p>No backend, no Firebase, no paid API. The APK works offline from the moment it is installed.</p>
+        </article>
+    </section>
+
+    <section id="download" class="panel">
+        <h2>Download</h2>
+        <p>
+            The button above resolves the newest APK from this project's GitHub Releases through the
+            public API at load time. There is no hard-coded or placeholder link: if no release exists,
+            the page says so.
+        </p>
+        <dl class="facts">
+            <div><dt>Package</dt><dd>com.vcam.pro</dd></div>
+            <div><dt>Version</dt><dd id="fact-version">—</dd></div>
+            <div><dt>ABI</dt><dd>arm64-v8a</dd></div>
+            <div><dt>Minimum SDK</dt><dd>Android 10 (API 29)</dd></div>
+            <div><dt>APK size</dt><dd id="fact-size">—</dd></div>
+            <div><dt>SHA-256</dt><dd><code id="fact-sha">published with each release</code></dd></div>
+        </dl>
+    </section>
+
+    <section id="requirements" class="panel">
+        <h2>Requirements</h2>
+        <ul class="list">
+            <li>Android 10 (API 29) or newer, arm64 device.</li>
+            <li>A camera for Camera Studio; the virtual camera also works from imported files.</li>
+            <li>Camera and microphone permissions for capture — both optional for library and SDK use.</li>
+            <li>No network permission is required by the app itself.</li>
+        </ul>
+    </section>
+
+    <section id="install" class="panel">
+        <h2>Install</h2>
+        <ol class="list">
+            <li>Download the APK from the latest release.</li>
+            <li>Allow installing unknown apps for your browser when Android asks.</li>
+            <li>Verify the SHA-256 printed on the release against the downloaded file.</li>
+            <li>Open VCAM Pro, grant camera access, record a clip in Camera Studio.</li>
+            <li>Open the library, pick the clip, then open Virtual Camera Studio to stream it.</li>
+            <li>Install the integration sample APK to see those frames inside another app.</li>
+        </ol>
+    </section>
+
+    <section id="changelog" class="panel">
+        <h2>Changelog</h2>
+        <div id="changelog-body">
+            <p class="muted">Release notes are read from GitHub.</p>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>VCAM PRO ULTIMATE VIP 2026 · built for testing apps you own or are authorised to test.</p>
+    <p class="muted">No identity verification bypass, no third-party app interference, no data collection.</p>
+</footer>
+
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

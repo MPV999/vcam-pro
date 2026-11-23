@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Virtual Camera SDK · VCAM PRO</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<header class="nav">
+    <a class="brand" href="index.html"><span class="dot"></span> VCAM PRO <span class="tag">2026</span></a>
+    <nav><a href="index.html">Home</a><a href="privacy.html">Privacy</a></nav>
+</header>
+<main>
+    <section class="panel" style="margin-top:48px">
+        <h2>Virtual Camera SDK</h2>
+        <p>
+            The SDK produces frames inside your app. It cannot and does not replace the camera for
+            other applications — Android offers no public API for that. Any app that links the SDK
+            receives real frames from the VCAM pipeline.
+        </p>
+
+        <h3>Add the dependency</h3>
+        <pre>// settings.gradle.kts
+include(":virtual-camera-sdk:api")
+include(":virtual-camera-sdk:format")
+include(":virtual-camera-sdk:frames")
+include(":virtual-camera-sdk:playback")
+include(":virtual-camera-sdk:source")
+
+// your app module
+dependencies {
+    implementation(project(":virtual-camera-sdk:source"))
+}</pre>
+
+        <h3>Create a session</h3>
+        <pre>val session = VirtualCameraSdk.createSession(
+    config = VirtualCameraConfig(
+        configuration = FrameConfiguration(1280, 720, 30, FrameFormat.RGBA_8888),
+        bufferCount = 4,
+    ),
+    consumer = FrameConsumer { frame -&gt;
+        // frame.data is a direct ByteBuffer; copy what you need, then release.
+        render(frame)
+        frame.release()
+    },
+)
+
+// video
+session.useSource(VirtualCameraSdk.videoSource(context, uri))
+
+// still image, rendered continuously at the configured FPS
+session.useSource(VirtualCameraSdk.imageSource(context, uri))
+
+// live camera
+session.useSource(
+    VirtualCameraSdk.physicalCameraSource(context, lifecycleOwner, CameraSelector.LENS_FACING_BACK)
+)</pre>
+
+        <h3>Transport</h3>
+        <pre>val playback = session.playback()   // null for live sources
+playback?.play()
+playback?.pause()
+playback?.seekTo(2_000_000L)
+playback?.setLooping(true)</pre>
+
+        <h3>Rules the SDK enforces</h3>
+        <ul class="list">
+            <li>Bounded buffers. A slow consumer causes dropped frames, never unbounded memory.</li>
+            <li>Every frame must be released; the pool is the backpressure mechanism.</li>
+            <li>Source switches are serialised, so rapid switching cannot crash teardown.</li>
+            <li>Typed <code>SourceError</code> failures instead of silent stalls.</li>
+        </ul>
+
+        <h3>Honest limitations</h3>
+        <ul class="list">
+            <li>Frames are delivered to your process only. Other apps cannot see them.</li>
+            <li>Output is produced by GPU read-back plus an optional CPU YUV conversion; RGBA is the cheapest format.</li>
+            <li>Decoded output uses the codec's buffer size, so a padded stream (e.g. 1920x1088) is reported at that size.</li>
+        </ul>
+    </section>
+</main>
+<footer><p>VCAM PRO ULTIMATE VIP 2026</p></footer>
+</body>
+</html>
