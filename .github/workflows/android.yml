@@ -44,14 +44,32 @@ jobs:
 
       - name: Unit tests (JVM)
         run: |
+          set +e
           gradle \
             :core:common:testDebugUnitTest \
             :virtual-camera-sdk:format:testDebugUnitTest \
             :virtual-camera-sdk:frames:testDebugUnitTest \
-            --stacktrace
+            --stacktrace > /tmp/unit.log 2>&1
+          status=$?
+          if [ $status -ne 0 ]; then
+            # Surface the real errors as annotations, otherwise they are buried in the log.
+            grep -E "^e: |FAILED|AssertionError|expected:" /tmp/unit.log | head -40 |
+              while IFS= read -r line; do echo "::error::$line"; done
+            tail -60 /tmp/unit.log
+          fi
+          exit $status
 
       - name: Assemble debug APKs
-        run: gradle :app:assembleDebug :integration-sample:assembleDebug --stacktrace
+        run: |
+          set +e
+          gradle :app:assembleDebug :integration-sample:assembleDebug --stacktrace > /tmp/build.log 2>&1
+          status=$?
+          if [ $status -ne 0 ]; then
+            grep -E "^e: |error:" /tmp/build.log | head -40 |
+              while IFS= read -r line; do echo "::error::$line"; done
+            tail -60 /tmp/build.log
+          fi
+          exit $status
 
       - name: Decode signing key (only when secrets are configured)
         if: env.VCAM_KEYSTORE_B64 != ''
@@ -65,7 +83,16 @@ jobs:
           } >> "$GITHUB_ENV"
 
       - name: Assemble release APK
-        run: gradle :app:assembleRelease --stacktrace
+        run: |
+          set +e
+          gradle :app:assembleRelease --stacktrace > /tmp/release.log 2>&1
+          status=$?
+          if [ $status -ne 0 ]; then
+            grep -E "^e: |error:" /tmp/release.log | head -40 |
+              while IFS= read -r line; do echo "::error::$line"; done
+            tail -60 /tmp/release.log
+          fi
+          exit $status
 
       - name: Collect APKs and checksums
         run: |
@@ -98,6 +125,24 @@ jobs:
           name: vcam-apks
           path: artifacts/*
           if-no-files-found: error
+
+      # Rolling release so the website always has a stable download URL, without waiting
+      # for a manual tag.
+      - name: Publish rolling latest release
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cat > release-notes.md <<EOF
+          Automatic build of commit ${GITHUB_SHA:0:7} on $(date -u +%Y-%m-%dT%H:%M:%SZ).
+
+          Install **VCAM-Pro-debug.apk** — debug-signed, so Android will install it.
+          The release build is unsigned and cannot be installed.
+          EOF
+          gh release delete latest --yes --cleanup-tag || true
+          gh release create latest release-apks/*.apk release-apks/SHA256SUMS.txt \
+            --title "VCAM PRO build ${GITHUB_SHA:0:7}" \
+            --notes-file release-notes.md
 
       - name: Generate website release metadata
         run: |
@@ -163,10 +208,8 @@ jobs:
 
   pages:
     name: Deploy website to GitHub Pages
-    needs: build
-    # Pages must be enabled first (Settings -> Pages -> Source: GitHub Actions). Until then
-    # this job is allowed to fail without turning the whole run red, because the APKs are
-    # what matters here.
+    # Deliberately independent of the Android build: the download page should be reachable
+    # (and honestly say "no APK yet") even while the build is being fixed.
     continue-on-error: true
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     runs-on: ubuntu-latest
@@ -176,6 +219,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
+        with:
+          enablement: true
       - uses: actions/upload-pages-artifact@v3
         with:
           path: website

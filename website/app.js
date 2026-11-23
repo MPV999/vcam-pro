@@ -54,12 +54,12 @@
         }
 
         if (button) {
-            button.textContent = "Download APK · " + release.tag_name;
+            button.textContent = "Download APK · " + (release.name || release.tag_name);
             button.href = apk.browser_download_url;
             button.classList.remove("disabled");
             button.removeAttribute("aria-disabled");
         }
-        if (versionFact) versionFact.textContent = release.tag_name;
+        if (versionFact) versionFact.textContent = release.name || release.tag_name;
         if (sizeFact) sizeFact.textContent = humanSize(apk.size);
         if (meta) {
             meta.textContent = "Published " + new Date(release.published_at).toLocaleDateString() +
